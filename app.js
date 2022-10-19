@@ -6,6 +6,7 @@ const gridContainer = document.querySelector(".grid-container");
 const overlay = document.querySelector(".overlay");
 const modalContainer = document.querySelector(".modal-content");
 const modalClose = document.querySelector(".modal-close");
+let openModal;
 
 
 // fetch data from API
@@ -27,7 +28,7 @@ function displayEmployees(employeeData) {
     let picture = employee.picture;
     // template literals make this so much cleaner!
     employeeHTML += `
-    <div class="card" data-index="${index}">
+    <div class="card" id="card" data-index="${index}">
     <img class="avatar" src="${picture.large}" />
     <div class="text-container">
     <h2 class="name">${name.first} ${name.last}</h2>
@@ -40,6 +41,7 @@ function displayEmployees(employeeData) {
 
     gridContainer.innerHTML = employeeHTML;
 }
+
 
 function displayModal(index) {
 
@@ -65,8 +67,6 @@ function displayModal(index) {
 
     overlay.classList.remove("hidden");
     modalContainer.innerHTML = modalHTML;
-
-    console.log(street);
  }
 
  gridContainer.addEventListener('click', e => {
@@ -75,6 +75,7 @@ function displayModal(index) {
     // select the card element based on its proximity to actual element clicked
     const card = e.target.closest(".card");
     const index = card.getAttribute('data-index');
+    openModal = index;
     displayModal(index);
     }
 });
@@ -82,6 +83,8 @@ function displayModal(index) {
 modalClose.addEventListener('click', () => {
     overlay.classList.add("hidden");
 });
+
+
     
 // Search Bar functionality
 const searchBar = document.getElementById('searchBar');
@@ -92,13 +95,29 @@ function employeeFilter() {
   let names = document.querySelectorAll(".card .name"); //Array of names
 
   names.forEach((person) => {
-    let content = person.textContent;
+    let content = person.textContent;s
     if(content.toLowerCase().includes(input)) {
         person.parentNode.parentNode.style.display = 'flex';
     } else {
         person.parentNode.parentNode.style.display = 'none';
     }
   });
-
-
 }
+
+//Employee detail change info
+const arrowLeft = document.querySelector(".arrowLeft");
+const arrowRight = document.querySelector(".arrowRight");
+
+arrowLeft.addEventListener("click", () => {
+    if (openModal > 0) {
+        openModal--;
+        displayModal(openModal);
+    };
+});
+
+arrowRight.addEventListener("click", () => {
+    if (openModal < 11) {
+        openModal++;
+        displayModal(openModal);
+    };
+});

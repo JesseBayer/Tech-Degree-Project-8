@@ -83,3 +83,16 @@ body {
     border-radius: 5px;
     font-weight: bold;
 }
+
+.modal .avatar {
+    border-radius: 50%;
+}
+
+#arrowLeft, 
+#arrowRight {
+    width: 40px;
+}
+
+#arrowLeft {
+    padding-right: 250px;
+}

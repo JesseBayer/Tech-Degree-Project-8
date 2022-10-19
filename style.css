@@ -71,3 +71,15 @@ body {
     color: rgb(125, 125, 141);
     font-size: 14px;
 }
+
+.searchContainer {
+    text-align: center;
+}
+
+.searchContainer input {
+    width: 500px;
+    height: 30px;
+    border: 1px solid rgb(180, 179, 179);
+    border-radius: 5px;
+    font-weight: bold;
+}

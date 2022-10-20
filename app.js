@@ -61,7 +61,7 @@ function displayModal(index) {
         <p>${phone}</p>
         <p class="address">${JSON.stringify(street.number)} ${JSON.stringify(street.name).replace(/\"/g, "")}, ${state} ${postcode}</p>
         <p>Birthday:
- ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
+ ${('0' + (date.getMonth()+1)).slice(-2)}/${date.getDate()}/${date.getFullYear()}</p>
     </div>
     `;
 
@@ -95,7 +95,7 @@ function employeeFilter() {
   let names = document.querySelectorAll(".card .name"); //Array of names
 
   names.forEach((person) => {
-    let content = person.textContent;s
+    let content = person.textContent;
     if(content.toLowerCase().includes(input)) {
         person.parentNode.parentNode.style.display = 'flex';
     } else {
